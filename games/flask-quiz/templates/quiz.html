@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz: Which Heri are you?</title>
+</head>
+<body>
+    <h1>QUIZ: Which Heri are you?</h1>
+
+    <form method="post" action="{{ url_for('quiz') }}">
+        {% for question in questions %}
+            <div>
+                <label>{{ question }}</label>
+                <select name="{{ loop.index }}" required>
+                    {% if loop.index == 1 %}
+                        <option value="1">pickles with caramel</option>
+                        <option value="2">deep fried tarantula</option>
+                        <option value="3">hot dog spaghetti</option>
+                        <option value="4">soy sauce ice cream</option>
+                        <option value="5">a raw snail</option>
+                    {% elif loop.index == 2 %}
+                        <option value="1">a bear</option>
+                        <option value="2">a nest of ants</option>
+                        <option value="3">a komodo dragon</option>
+                        <option value="4">a bat</option>
+                        <option value="5">a cheetah</option>
+                    {% elif loop.index == 3 %}
+                        <option value="1">invisibility but every step you take is squeaky</option>
+                        <option value="2">flying but everywhere you go there are tree branches getting in your face</option>
+                        <option value="3">teleportation but you never choose where you end up</option>
+                        <option value="4">you have as much money as you want but every time you go outside a dog will attack you</option>
+                    {% elif loop.index == 4 %}
+                        <option value="1">Vladimir Putin</option>
+                        <option value="2">Cersei Lannister</option>
+                        <option value="3">Charles Manson</option>
+                        <option value="4">Angela Merkel</option>
+                        <option value="5">Hannibal Lecter</option>
+                    {% elif loop.index == 5 %}
+                        <option value="1">plain toast</option>
+                        <option value="2">avocado and egg toast</option>
+                        <option value="3">French toast</option>
+                        <option value="4">nutella and banana toast</option>
+                    {% endif %}
+                </select>
+            </div>
+        {% endfor %}
+
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if picture is not none %}
+        <img src="{{ url_for('static', filename='images/' + picture) }}" alt="Heri Cat">
+    {% endif %}
+</body>
+</html>
+
+
+
