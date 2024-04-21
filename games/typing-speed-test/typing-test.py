@@ -5,8 +5,6 @@ import time
 import random
 
 
-# 750 x 500
-
 class Game:
 
     def __init__(self):
@@ -51,10 +49,9 @@ class Game:
 
     def show_results(self, screen):
         if not self.end:
-            # Calculate time
+
             self.total_time = time.time() - self.time_start
 
-            # Calculate accuracy
             count = 0
             for i, c in enumerate(self.word):
                 try:
@@ -64,7 +61,6 @@ class Game:
                     pass
             self.accuracy = count / len(self.word) * 100
 
-            # Calculate words per minute
             self.wpm = len(self.input_text) * 60 / (5 * self.total_time)
             self.end = True
             print(self.total_time)
@@ -72,7 +68,6 @@ class Game:
             self.results = 'Time:' + str(round(self.total_time)) + " secs   Accuracy:" + str(
                 round(self.accuracy)) + "%" + '   Wpm: ' + str(round(self.wpm))
 
-            # draw icon image
             self.time_img = pygame.image.load('icon.png')
             self.time_img = pygame.transform.scale(self.time_img, (150, 150))
             # screen.blit(self.time_img, (80,320))
@@ -99,13 +94,13 @@ class Game:
                     sys.exit()
                 elif event.type == pygame.MOUSEBUTTONUP:
                     x, y = pygame.mouse.get_pos()
-                    # position of input box
-                    if x >= 50 and x <= 650 and y >= 250 and y <= 300:
+
+                    if 50 <= x <= 650 and 250 <= y <= 300:
                         self.active = True
                         self.input_text = ''
                         self.time_start = time.time()
-                        # position of reset box
-                    if x >= 310 and x <= 510 and y >= 390 and self.end:
+
+                    if 310 <= x <= 510 and y >= 390 and self.end:
                         self.reset_game()
                         x, y = pygame.mouse.get_pos()
 
